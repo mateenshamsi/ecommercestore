@@ -7,5 +7,15 @@
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.3",
     "morgan": "^1.10.0"
-  }
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

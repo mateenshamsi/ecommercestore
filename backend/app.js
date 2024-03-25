@@ -3,13 +3,13 @@ require('dotenv').config();
 const app = express();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const  connectDB  = require('./db.js'); // Assuming connectDB is exported as a named function from db.js
+const  connectDB  = require('./db.js');
 const authRoutes = require('./routes/authRoute.js')
-// Connect to the database
+
 connectDB()
   .then(() => {
     console.log('MongoDB connected successfully');
-    // Start the server after successful database connection
+   
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
