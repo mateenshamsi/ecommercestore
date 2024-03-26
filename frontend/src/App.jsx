@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import About from './pages/About';
 import PageNotFound from './pages/PageNotFound';
 import Privacypolicy from './pages/Privacypolicy';
+import RegisterPage from './pages/Auth/RegisterPage';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,13 +18,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<About/>}/>
           <Route path="*" element={<PageNotFound/>}/>
-          <Route path="/policy" element={<Privacypolicy/>}/>
-          <Route path="/contact" element={<Privacypolicy/>}/>
-
+          <Route path="/register" element={<RegisterPage/>}/>
         
         </Routes>
+        
       </div>
       <Footer />
     </Router>
