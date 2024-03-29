@@ -11,12 +11,14 @@ import RegisterPage from './pages/Auth/RegisterPage';
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './pages/Auth/Login';
+import { AuthProvider } from './context/auth';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+    <AuthProvider>
     <Router>
 
       <div>
@@ -32,6 +34,7 @@ function App() {
       </div>
       <Footer />
     </Router>
+    </AuthProvider>
         <ToastContainer/>
         </>
   );

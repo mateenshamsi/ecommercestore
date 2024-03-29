@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import {useAuth} from '../../context/auth.jsx'
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [auth,setAuth] = useAuth()
     const navigate = useNavigate()    
     const handleLogin = async(e) => {
         e.preventDefault();
@@ -18,7 +19,13 @@ function Login() {
 
           if (response.data.success) {
               toast.success('Loggedin Successfully');
-              navigate('/login') 
+              setAuth({
+                ...auth,
+                user:response.data.user,
+                token:response.data.token
+              })
+              localStorage.setItem('auth',JSON.stringify(response.data))
+              navigate('/') 
             } else {
               toast.error('Incorrect Credentials');
           }
@@ -31,7 +38,7 @@ function Login() {
 
     return (
         <div className='mt-32 flex flex-col justify-center items-center'>
-            <h1 className="text-[30px] font-bold">Register</h1> 
+            <h1 className="text-[30px] font-bold">Login</h1> 
             <form onSubmit={handleLogin}> 
              
                 <div className='my-4 mx-4'> 

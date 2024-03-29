@@ -9,7 +9,18 @@ import { NavLink } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Grid from '@mui/material/Grid';
 import Badge from '@mui/material/Badge';
+import { useAuth } from './context/auth';
 export default function Header() {
+  const [auth,setAuth] = useAuth() 
+  const handleLogout = ()=>{
+    setAuth({
+      ...auth,
+      user:null ,
+      token:''
+    })
+    localStorage.removeItem('auth') 
+
+  }
   const cartCount = 3;
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -29,12 +40,16 @@ export default function Header() {
               <NavLink to="/category" variant="h6" style={{ textDecoration: 'none', color: 'inherit', fontSize:"15px", margin: "0 10px" }}>
                 Category
               </NavLink>
-              <NavLink to="/login" variant="h6" style={{ textDecoration: 'none', color: 'inherit', fontSize:"15px", margin: "0 10px" }}>
+              {auth.user?(<><NavLink onClick={handleLogout}  variant="h6" style={{ textDecoration: 'none', color: 'inherit', fontSize:"15px", margin: "0 10px" }}>
+                Logout
+              </NavLink></>):(<><NavLink to="/login" variant="h6" style={{ textDecoration: 'none', color: 'inherit', fontSize:"15px", margin: "0 10px" }}>
                 Login
               </NavLink>
               <NavLink to="/register" variant="h6" style={{ textDecoration: 'none', color: 'inherit', fontSize:"15px", margin: "0 10px" }}>
                 Register
               </NavLink>
+              </>
+              )}
               <NavLink to="/cart" variant="h6" style={{ textDecoration: 'none', color: 'inherit', fontSize:"15px", margin: "0 10px" }}>
               <Badge badgeContent={cartCount} color="secondary">
                 <ShoppingCartIcon/>
