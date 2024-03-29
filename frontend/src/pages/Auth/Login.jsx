@@ -3,30 +3,28 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-function RegisterPage() {
-    const [username, setUsername] = useState("");
+function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate()    
-    const handleRegister = async(e) => {
+    const handleLogin = async(e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('/api/auth/register', {
-              name:username,
+          const response = await axios.post('/api/auth/login', {
+             
               email:email,
               password:password
           });
 
-          // Assuming your backend returns a success message upon successful registration
           if (response.data.success) {
-              toast.success('Register Successfully');
+              toast.success('Loggedin Successfully');
               navigate('/login') 
             } else {
-              toast.error('Registration Failed');
+              toast.error('Incorrect Credentials');
           }
       } catch (error) {
           console.error('Error registering:', error);
-          toast.error('Registration Failed');
+          toast.error('Login Failed');
       }
   };
       
@@ -34,17 +32,8 @@ function RegisterPage() {
     return (
         <div className='mt-32 flex flex-col justify-center items-center'>
             <h1 className="text-[30px] font-bold">Register</h1> 
-            <form onSubmit={handleRegister}> 
-                <div className='my-4 block mx-4'> 
-                    <label htmlFor="Username" className='mx-4'>Username</label><br />
-                    <input 
-                        type="text" 
-                        id="Username" 
-                        placeholder='username' 
-                        className="px-4 py-2 bg-gray-100 rounded focus:outline-none focus:bg-white focus:ring focus:ring-blue-400" 
-                        onChange={e => setUsername(e.target.value)}
-                    />
-                </div>
+            <form onSubmit={handleLogin}> 
+             
                 <div className='my-4 mx-4'> 
                     <label htmlFor="Email" className='mx-4'>Email</label><br />
                     <input 
@@ -71,4 +60,5 @@ function RegisterPage() {
     );
 }
 
-export default RegisterPage;
+export default Login;
+

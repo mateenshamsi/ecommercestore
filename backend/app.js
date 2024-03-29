@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const  connectDB  = require('./db.js');
 const authRoutes = require('./routes/authRoute.js')
-
+const cors = require('cors')
 connectDB()
   .then(() => {
     console.log('MongoDB connected successfully');
@@ -22,7 +22,8 @@ connectDB()
 // Define routes and middleware
 app.use(express.json());
 app.use(morgan('dev'));
-app.use('/api/v1/auth',authRoutes)
+app.use(cors())
+app.use('/api/auth',authRoutes)
 app.get('/', (req, res) => {
   res.send({
     message: 'Welcome to the ecommerce app',

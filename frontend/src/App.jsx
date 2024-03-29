@@ -10,6 +10,8 @@ import Privacypolicy from './pages/Privacypolicy';
 import RegisterPage from './pages/Auth/RegisterPage';
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import Login from './pages/Auth/Login';
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -23,6 +25,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<PageNotFound/>}/>
           <Route path="/register" element={<RegisterPage/>}/>
+          <Route path="/login" element={<Login/>}/>
+       
         </Routes>
         
       </div>
