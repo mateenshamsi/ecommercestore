@@ -1,0 +1,10 @@
+const express=  require('express')
+const router = express.Router()
+const {requireSignIn, isAdmin} = require('../middleware/authMiddleware.js')
+const  { createCategoryController, updateCategoryController,deleteCategory,getCategoryController,getCategory } =require('../controllers/categoryController.js') 
+router.post('/createCategory',requireSignIn,isAdmin,createCategoryController)
+router.put('/updateCategory/:id',requireSignIn,isAdmin,updateCategoryController)
+router.get('/getCategories',getCategoryController)
+router.get('/getCategory/:id',getCategory)
+router.delete('/deleteCategory/:id',requireSignIn,isAdmin,deleteCategory)
+module.exports = router 
