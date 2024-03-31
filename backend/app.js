@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const  connectDB  = require('./db.js');
 const authRoutes = require('./routes/authRoute.js')
 const categoryRoute = require('./routes/categoryRoute')
+const productRoutes = require('./routes/productRoute.js')
 const cors = require('cors')
 connectDB()
   .then(() => {
@@ -26,6 +27,7 @@ app.use(morgan('dev'));
 app.use(cors())
 app.use('/api/auth',authRoutes)
 app.use('/api/category',categoryRoute)
+app.use('/api/products',productRoutes)
 app.get('/', (req, res) => {
   res.send({
     message: 'Welcome to the ecommerce app',
