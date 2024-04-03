@@ -23,4 +23,4 @@ catch(err)
     return null
 }
 }
-export {uploadOnCloudinary}
+module.exports={uploadOnCloudinary}

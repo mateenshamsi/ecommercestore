@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     },
     slug:{
         type:String , 
-        required:true ,
+      
     },
     price:{ 
         type:Number , 
@@ -24,12 +24,13 @@ const productSchema = new mongoose.Schema({
         type:Number , 
         required:true 
     } ,
-    // photo:{ 
-    //     type:String , 
-       
-    // },
+    photo:{ 
+        data:Buffer , 
+        contentType:String 
+    },
     shipping:{ 
         type:Boolean 
     }
 },{timestamps:true})
-const Products = new mongoose.Schema('Products',productSchema)
+const Product = mongoose.model('Product',productSchema)
+module.exports= Product
