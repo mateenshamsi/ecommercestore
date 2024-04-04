@@ -154,3 +154,4 @@ module.exports.updateProductController = async(req,res)=>{
     error,
     message: "Error in Updte product",
   });}}
+  

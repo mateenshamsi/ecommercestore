@@ -12,6 +12,9 @@ import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './pages/Auth/Login';
 import { AuthProvider } from './context/auth';
+import Dashboard from './pages/user/Dashboard';
+import PrivateRoute from './Routes/AdminRoute';
+import AdminRoute from './Routes/AdminRoute';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,8 +27,16 @@ function App() {
       <div>
         <Header />
         <Routes>
+          
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<PageNotFound/>}/>
+          
+          <Route path="/dashboard" element={<PrivateRoute/>}>
+              <Route path="user" element={<Dashboard/>}/>
+          </Route>
+          <Route path="/dashboard" element={<AdminRoute/>}>
+              <Route path="admin" element={<Dashboard/>}/>
+          </Route>
           <Route path="/register" element={<RegisterPage/>}/>
           <Route path="/login" element={<Login/>}/>
        
